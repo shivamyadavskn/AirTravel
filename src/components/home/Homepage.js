@@ -1,7 +1,6 @@
 "use client";
 import React, { useState } from "react";
 import {
-  ChevronDown,
   ArrowLeftRight,
   Calendar,
   Users,
@@ -26,7 +25,6 @@ const HomePage = () => {
   const [showTravelerPopup, setShowTravelerPopup] = useState(false);
 
   const handleSearch = (e) => {
-   
     const searchParams = new URLSearchParams({
       tripType,
       from,
@@ -38,19 +36,8 @@ const HomePage = () => {
       infants: travelers.infants,
       travelClass,
     }).toString();
-
     const searchUrl = `/search?${searchParams}`;
     router.push(searchUrl);
-
-    console.log("Searching for flights:", {
-      tripType,
-      from,
-      to,
-      departureDate,
-      returnDate,
-      travelers,
-      travelClass,
-    });
   };
 
   const updateTravelers = (type, operation) => {
@@ -248,7 +235,7 @@ const HomePage = () => {
           <button
             type="submit"
             className="w-full bg-orange-500 text-white font-bold py-3 px-6 rounded-full hover:bg-orange-600 transition duration-300"
-            onClick={()=>handleSearch()}
+            onClick={() => handleSearch()}
           >
             SEARCH FLIGHTS
           </button>

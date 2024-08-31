@@ -4,6 +4,6 @@ export default function RootLayoutPage() {
   return (
     <>
       <Home />
-    </>
+    </> 
   );
 }
