@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import Link from "next/link";
-import Modal from "@/components/modal/modal";
+import Modal from "@/components/modal/Modal";
 
 const ProfileDropDownList = ["DashBoard", "Setting", "Earnings", "Logout"];
 
