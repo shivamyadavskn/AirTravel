@@ -1,39 +1,28 @@
-async function FetchFlightsDataAPI() {
-  console.log(
-    "data todfr",
-    JSON.stringify(sourceAirportCode),
-    JSON.stringify(destinationAirportCode),
-    itineraryType,
-    sortOrder,
-    numAdults,
-    classOfService,
-    pageNumber,
-    nearby,
-    nonstop,
-    currencyCode,
-    region,
-    date,
-    returnDate
-  );
-  const url = `https://tripadvisor16.p.rapidapi.com/api/v1/flights/searchFlights?sourceAirportCode=${sourceAirportCode}&destinationAirportCode=${destinationAirportCode}&date=${date}&itineraryType=${itineraryType}&sortOrder=${sortOrder}&numAdults=${numAdults}&numSeniors=${numChildren}&classOfService=${classOfService}&returnDate=${returnDate}&pageNumber=${pageNumber}&nearby=${nearby}&nonstop=${nonstop}&currencyCode=${currencyCode}&region=${region}`;
-  console.log("url data in search function", url);
-  const options = {
+export const GetFlightSearchData = async (params) => {
+  const myHeaders = new Headers();
+  myHeaders.append("Authorization", "Bearer YnHCqRblzAVQ5q7QnEnzcYYR69IR");
+
+  const requestOptions = {
     method: "GET",
-    headers: {
-      "x-rapidapi-key": "d9575394f3mshabc1a3bc761f6abp180204jsn22668636c912", // Use environment variable for API key
-      "x-rapidapi-host": "tripadvisor16.p.rapidapi.com",
-    },
+    headers: myHeaders,
+    redirect: "follow",
   };
 
   try {
-    const response = await fetch(url, options);
-    const result = await response.json();
-    console.log("resulttttttttttt", result);
-    return result;
-  } catch (error) {
-    console.error("Fetch error:", error);
-    return new Error("Failed to fetch flights data", error);
-  }
-}
+    const response = await fetch(
+      `https://test.api.amadeus.com/v2/shopping/flight-offers?originLocationCode=${params.originLocationCode}&destinationLocationCode=${params.destinationLocationCode}&departureDate=${params.departureDate}&returnDate=${params.returnDate}&adults=${params.adults}&max=${params.max}`,
+      requestOptions
+    );
+    
+    if (!response.ok) {
+      throw new Error(`Error: ${response.statusText}`);
+    }
 
-export { FetchFlightsDataAPI };
+    const result = await response.json();
+    console.log("in flight data function",result); // Log the result or handle the result accordingly
+    return result; // Return the result for further use if needed
+  } catch (error) {
+    console.error("Error fetching flight data:", error);
+    throw error; // Optionally rethrow the error if you want to handle it outside this function
+  }
+};
