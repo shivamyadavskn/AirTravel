@@ -214,7 +214,7 @@ const NoFlightsMessage = ({ searchCriteria }) => (
     <Card className="bg-yellow-100 border-yellow-500 text-yellow-700">
         <CardContent className="p-4">
             <p className="font-bold">No Flights Found</p>
-            <p>We couldn't find any flights matching your search criteria. Please try different dates or airports.</p>
+            <p>We couldnt find any flights matching your search criteria. Please try different dates or airports.</p>
         </CardContent>
     </Card>
 );
